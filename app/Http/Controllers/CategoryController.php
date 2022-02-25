@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+   
+    public function index($slug)
     {
-        //
+        $category = Category::where('slug', $slug)->first();
+
+        $posts = Post::where('category_id', $category->id)
+            ->where('active', 1)
+            ->latest()
+            ->paginate(5);
+
+        return view('posts.index', compact('posts', 'category'));
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $count_all_post = Post::count();
+        $count_all_comment = Comment::count();
+        $author_post = Post::query()
+            ->where('user_id', auth()->user()->id)
+            ->count();
+        return view ('home', compact('count_all_post', 'author_post', 'count_all_comment'));
     }
 }

@@ -1,0 +1,7 @@
+@media screen and (max-width: 450px) {
+    .home-sidebar {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
