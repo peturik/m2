@@ -35,7 +35,7 @@
                     @auth
                     @if(\Illuminate\Support\Facades\Auth::user()->isAdmin() && auth()->user()->id == $post->user->id)
                     {{--<a href = “{{ url()->current() }}/update”>Update this post</a>--}}
-                    <a href="{{ route('posts.edit', ['post' => $post->id]) }}">Update this post</a>
+                    <a href="{{ route('post.edit', ['post' => $post->id]) }}">Update this post</a>
                     @endif
                     @endauth
                 </p>

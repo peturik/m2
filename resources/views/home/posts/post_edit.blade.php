@@ -1,11 +1,15 @@
-@extends('admin.layouts.main')
+@extends('layouts.app')
 
 @section('title', 'Post: Edit')
 
 @section('content')
-    <div class="container">
+
+<div class="d-flex p-3">
+@include('home.layouts.menu')
+
+<div class="container">
         <div class="row justify-content-center">
-            @include('admin.layouts.sidebar_admin')
+            {{-- @include('admin.layouts.sidebar_admin') --}}
 
             <div class="col-md-8">
                 <div class="card">
@@ -13,12 +17,12 @@
                         <h3>Edit Post <strong>{{ $post->title }}</strong></h3>
                     </div>
 
-                    @include('admin.layouts.menu')
+                    
 
                     <div class="card-body">
                         <article class="blog-post">
 
-                            <form action="{{ route('posts.update', ['post' => $post->id]) }} " method="post">
+                            <form action="{{ route('post.update', ['post' => $post->id]) }} " method="post">
                                 @csrf
                                 @method('PATCH')
                                 <div class="form-group m-2">
@@ -61,13 +65,13 @@
 
                                 <div class="form-group m-2">
                                     <label>
-                                        <textarea id="summernote"
+                                        <textarea id="mytextarea"
                                                   name="body"
-
                                                   contenteditable="true"
                                                   placeholder="Body"
+                                                  cols="60"
+                                                  rows="8"
                                                   class="form-control w-full @error('body') is-invalid @enderror">
-
                                             {!! old('body',$post->body) !!}
                                         </textarea>
                                     </label>
@@ -101,5 +105,8 @@
 
         </div>
     </div>
+
+</div>
+    
 @endsection
 

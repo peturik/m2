@@ -1,24 +1,26 @@
-@extends('app.main')
+@extends('layouts.app')
 @section('title', 'Post: Create')
 
+
 @section('content')
+<div class="d-flex p-3">
+    @include('home.layouts.menu')
     <div class="container">
         <div class="row justify-content-center">{{-- row g-4 --}}
-<!--            @include('admin.layouts.sidebar_admin')-->
 
             <div class="col-md-8">
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>Create New Post</h3>
+                        Create New Post
                     </div>
 
-<!--                    @include('admin.layouts.menu')-->
+                   
 
                     <div class="card-body">
                         <article class="blog-post">
 
-                            <form action="{{ route('posts.store') }} " method="post">
+                            <form action="{{ route('post.store') }} " method="post">
                                 @csrf
                                 <div class="form-group m-2">
                                     <label for="title"></label>
@@ -66,7 +68,7 @@
 
                                 <div class="form-group m-2">
                                     <label>
-                                        <textarea id="summernote"
+                                        <textarea id="mytextarea"
                                                   name="body"
                                                   rows="10"
                                                   cols="45"
@@ -102,10 +104,12 @@
 
 
             </div>
-
-            {{--            @include('layouts.sidebar')--}}
-
         </div>
     </div>
+
+</div>
+
+
+
 @endsection
 

@@ -1,17 +1,21 @@
-@extends('admin.layouts.main')
+@extends('layouts.app')
 @section('title', 'Home')
 
 @section('content')
+
+<div class="d-flex p-3">
+
+    @include('home.layouts.menu')
+
     <div class="container">
         <div class="row justify-content-center">
-            @include('admin.layouts.sidebar_admin')
 
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Your Posts</h3>
+                        Your Posts
                     </div>
-                    @include('admin.layouts.menu')
+                   
 
                     <div class="card-body">
                         @if (session('status'))
@@ -37,8 +41,8 @@
                                         <td><a href="{{ route('post', ['post' => $post->id]) }}">{{ $post->title }}</a></td>
                                         <td>{{ $post->category->title }}</td>
                                         <td>{{ mb_substr($post->body, 0, 300) }}</td>
-                                        <td><a href="{{ route('posts.edit', ['post' => $post->id]) }}">Update</a></td>
-                                        <td><a href="{{ route('posts.show', ['post' => $post->id]) }}">Delete</a></td>
+                                        <td><a href="{{ route('post.edit', ['post' => $post->id]) }}">Update</a></td>
+                                        <td><a href="{{ route('post.show', ['post' => $post->id]) }}">Delete</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -51,4 +55,9 @@
             </div>
         </div>
     </div>
+</div>
+
+
+
+   
 @endsection

@@ -25,11 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $count_all_post = Post::count();
+        $posts = Post::all();
+        // $count_all_post = Post::count();
         $count_all_comment = Comment::count();
         $author_post = Post::query()
             ->where('user_id', auth()->user()->id)
             ->count();
-        return view ('home', compact('count_all_post', 'author_post', 'count_all_comment'));
+        return view ('home', compact('author_post', 'count_all_comment', 'posts'));
     }
 }

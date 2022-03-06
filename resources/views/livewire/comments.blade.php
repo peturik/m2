@@ -42,7 +42,7 @@
             <div class="flex justify-start my-2">
                 <p
                     class="text-dark">{{ $comment->user->name}}
-                    <small class="text-muted">{{ $comment->created_at }}</small>
+                    <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
                 </p>
             </div>
             <p class="text-gray-800">{!! $comment->body !!}</p>

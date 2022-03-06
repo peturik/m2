@@ -1,20 +1,22 @@
-@extends('admin.layouts.main')
+@extends('layouts.app')
 @section('title', 'Comments')
 
 @section('content')
+
+<div class="d-flex p-3">
+
+    @include('home.layouts.menu')
+
     <div class="container">
         <div class="row justify-content-center">
-            @include('admin.layouts.sidebar_admin')
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-{{--                        <h3>Welcome, {{ Auth::user()->name }}!</h3>--}}
-                        <h3>Comments on your posts</h3>
+                        Comments on your posts
                     </div>
-                    @include('admin.layouts.menu')
+                    
 
                     <div class="card-body">
-{{--{{ dd(auth()->user()->id) }}--}}
                         @if(count($comments) > 0)
                             <table class="table table-striped">
                                 <thead>
@@ -30,11 +32,11 @@
                                 @foreach($comments as $comment)
                                     <tr>
                                         <td>{{ $comment->id }}</td>
-                                        <td><a href="{{ route('post', ['post' => $comment->post_id]) }}">{{ $comment->post->title }}</a></td>
+                                        <td><a href="{{ route('post', ['post' => $comment->post_id]) }}">{{ $comment->post->title }}</a></td> 
                                         <td>{{ $comment->user->name }}</td>
                                         <td>{{ $comment->body }}</td>
-                                        <td><a href="{{ route('comments.edit', ['comment' => $comment->id]) }}">Update</a></td>
-                                        <td><a href="{{ route('comments.show', ['comment' => $comment->id]) }}">Delete</a></td>
+                                        <td><a href="{{ route('comment.edit', ['comment' => $comment->id]) }}">Update</a></td>
+                                        <td><a href="{{ route('comment.show', ['comment' => $comment->id]) }}">Delete</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -47,4 +49,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

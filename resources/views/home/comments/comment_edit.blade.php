@@ -1,29 +1,32 @@
-@extends('admin.layouts.main')
+@extends('layouts.app')
 
 @section('title', 'Comment: Edit')
 
 @section('content')
+<div class="d-flex p-3">
+
+    @include('home.layouts.menu')
+
     <div class="container">
         <div class="row justify-content-center">
-            @include('admin.layouts.sidebar_admin')
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
                         <h3>Edit comment in Post <a href="{{ route('post', ['post' => $comment->post->id]) }}"> {{ $comment->post->title }}</a></h3>
                     </div>
 
-                    @include('admin.layouts.menu')
+                   
 
                     <div class="card-body">
                         <article class="blog-post">
 
-                            <form action="{{ route('comments.update', ['comment' => $comment->id]) }} " method="post">
+                            <form action="{{ route('comment.update', ['comment' => $comment->id]) }} " method="post">
                                 @csrf
                                 @method('PATCH')
 
                                 <div class="form-group m-2">
                                     <label>
-                                        <textarea id="summernote"
+                                        <textarea id="mytextarea"
                                                   name="body"
                                                   contenteditable="true"
                                                   placeholder="Body"
@@ -43,11 +46,11 @@
                             </form>
                             <hr>
                             <p class="blog-post-meta small">Posted on
-                                <span>
+                                <span><em>
 {{--                                {{ $post->created_at->diffForHumans() }}--}}
-                                    {{ $comment->created_at->toFormattedDateString() }}
+                                    {{ $comment->created_at->toFormattedDateString() }}</em>
                                 </span>
-                                by {{ $comment->user_id }}
+                                by <b>{{ $comment->user->name }}</b>
                             </p>
                             <hr>
                         </article>
@@ -58,9 +61,8 @@
 
             </div>
 
-            {{--            @include('layouts.sidebar')--}}
-
         </div>
     </div>
+</div>
 @endsection
 

@@ -5,3 +5,19 @@
     }
 }
 
+.list-unstyled li{
+    padding-top: 0.5rem;
+}
+
+.list-unstyled a{
+    text-decoration: none;
+}
+
+.list-unstyled{
+    padding-top: 0;
+}
+
+pre {
+    border: 1px solid #d3d6d8;
+    border-radius: 3px;
+}

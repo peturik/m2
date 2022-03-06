@@ -1,10 +1,13 @@
-@extends('admin.layouts.main')
+@extends('layouts.main')
 @section('title', 'Delete/'.$post->slug)
 
 @section('content')
+
+<div class="d-flex p-3">
+@include('home.layouts.menu')
+
     <div class="container">
         <div class="row justify-content-center">{{--class="row g-5"--}}
-            @include('admin.layouts.sidebar_admin')
 
             <div class="col-md-8">
                 <div class="card">
@@ -12,15 +15,13 @@
                         <h3>Delete {{ $post->title }}</h3>
                     </div>
 
-                    @include('admin.layouts.menu')
-
                     <div class="card-body">
                         <article class="blog-post">
                             <h2 class="blog-post-title">
                                 <a href="{{ route('post', ['post' => $post->id]) }}"> {{ $post->title }}</a>
                             </h2>
 
-                            <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="post">
+                            <form action="{{ route('post.destroy', ['post' => $post->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" class="btn btn-danger" value="Delete this post">
@@ -50,5 +51,8 @@
 
         </div>
     </div>
+
+</div>
+
 
 @endsection
