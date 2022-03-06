@@ -59,7 +59,8 @@ class CommentAdminController extends Controller
             'post_id' => $comment->post->id,
         ]);
         $comment->save();
-        return redirect()->route('post', [$comment->post->id]);
+        // return redirect()->route('post', [$comment->post->id]);
+        return redirect()->route('comment.index');
     }
 
     public function show(Comment $comment)
